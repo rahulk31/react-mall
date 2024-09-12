@@ -1,0 +1,33 @@
+.rating-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  padding: 0 5px;
+  border-radius: 4px;
+}
+
+.rating {
+  color: #000;
+  font-size: 12px;
+}
+
+.red {
+  background-color: red;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.green {
+  background-color: green;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.lightgreen {
+  background-color: lightgreen;
+}

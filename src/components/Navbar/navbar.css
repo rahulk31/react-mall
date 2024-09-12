@@ -1,0 +1,21 @@
+.navbar {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* background: linear-gradient(to bottom, #111111, #242424); */
+}
+
+.navbar ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 0;
+}
+
+.buttonClick {
+  color: #000000;
+}

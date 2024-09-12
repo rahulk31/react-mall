@@ -1,0 +1,19 @@
+.footer {
+  width: 100%;
+  padding: 2rem;
+  border-bottom: 1px solid #646cff;
+  margin-top: 2rem;
+  /* background: linear-gradient(to bottom, #222, #111); */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 0;
+}
