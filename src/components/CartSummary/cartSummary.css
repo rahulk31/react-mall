@@ -46,3 +46,9 @@
 .cta-cart-summary-container button {
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .cart-summary-container {
+    max-width: 100%;
+  }
+}

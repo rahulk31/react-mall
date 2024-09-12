@@ -58,6 +58,14 @@
   }
 }
 
+/* 
+/* 
+
+=========================
+CART PAGE STYLES
+=========================
+*/
+
 .cart-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -93,4 +101,10 @@
 
 .empty-cart button {
   width: 180px;
+}
+
+@media screen and (max-width: 768px) {
+  .cart-container {
+    grid-template-columns: 1fr;
+  }
 }

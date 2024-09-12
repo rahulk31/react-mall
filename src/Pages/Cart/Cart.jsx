@@ -34,7 +34,7 @@ const Cart = () => {
         </div>
       ) : (
         <div className="empty-cart">
-          <video src={cartVideo} alt="empty-cart" autoPlay loop muted />
+          <img src={cartVideo} alt="empty-cart" />
           <Button type="primary" text="Shop Now" link="/shop" />
         </div>
       )}
