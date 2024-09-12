@@ -81,3 +81,16 @@
   position: relative;
   height: 100%;
 }
+
+.empty-cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 30px;
+  padding: 20px;
+}
+
+.empty-cart button {
+  width: 180px;
+}

@@ -1,12 +1,17 @@
 import PropTypes from "prop-types";
 import { btnVariants } from "../../utils/constants";
 import "./button.css";
+import { Link } from "react-router-dom";
 
-const Button = ({ type, text, onClick }) => {
+const Button = ({ type, text, onClick, link }) => {
   return (
-    <button className={`btn ${btnVariants[type]}`} onClick={onClick}>
-      {text}
-    </button>
+    <>
+      <Link to={link}>
+        <button className={`btn ${btnVariants[type]}`} onClick={onClick}>
+          {text}
+        </button>
+      </Link>
+    </>
   );
 };
 

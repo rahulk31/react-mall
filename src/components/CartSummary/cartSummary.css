@@ -29,6 +29,10 @@
   padding: 0 5px;
 }
 
+.cart-summary-item p:last-child {
+  font-weight: 600;
+}
+
 .cart-summary-item:last-child {
   border-top: 1px solid #ccc;
   padding-top: 10px;

@@ -2,8 +2,15 @@ import PropTypes from "prop-types";
 import { IoRemoveOutline, IoAddOutline, IoTrashOutline } from "react-icons/io5";
 import "./horizontalCard.css";
 import Rating from "../Rating/Rating";
+import { useDispatch } from "react-redux";
+import {
+  addItemToCart,
+  deleteItemFromCart,
+  removeItemFromCart,
+} from "../../store/slices/cartSlice";
 
-const HorizontalCard = ({ item }) => {
+const HorizontalCard = ({ item, quantity }) => {
+  const dispatch = useDispatch();
   return (
     <div className="horizontal-card-container">
       <div className="card-container">
@@ -20,11 +27,20 @@ const HorizontalCard = ({ item }) => {
       </div>
       <div className="cta-horizontal-card-container">
         <div className="quantity-container">
-          <IoRemoveOutline className="icon" />
-          <p className="quantity">1</p>
-          <IoAddOutline className="icon" />
+          <IoRemoveOutline
+            className="icon"
+            onClick={() => dispatch(removeItemFromCart(item))}
+          />
+          <p className="quantity">{quantity}</p>
+          <IoAddOutline
+            className="icon"
+            onClick={() => dispatch(addItemToCart(item))}
+          />
         </div>
-        <IoTrashOutline className="icon delete-icon" />
+        <IoTrashOutline
+          className="icon delete-icon"
+          onClick={() => dispatch(deleteItemFromCart(item))}
+        />
       </div>
     </div>
   );
@@ -32,6 +48,7 @@ const HorizontalCard = ({ item }) => {
 
 HorizontalCard.propTypes = {
   item: PropTypes.object.isRequired,
+  quantity: PropTypes.number.isRequired,
 };
 
 export default HorizontalCard;

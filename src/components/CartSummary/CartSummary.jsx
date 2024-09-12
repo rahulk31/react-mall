@@ -1,7 +1,13 @@
+import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import "./cartSummary.css";
 
-const CartSummary = () => {
+const CartSummary = ({ subTotal, shippingCharge, taxPercentage }) => {
+  const newSubTotal = Number(subTotal).toFixed(2);
+  const taxTotal = Number(subTotal + shippingCharge).toFixed(2);
+  const taxCharge = Number((taxTotal * taxPercentage) / 100).toFixed(2);
+  const total = Number(Number(taxTotal) + Number(taxCharge)).toFixed(2);
+
   return (
     <>
       <div className="cart-summary-container">
@@ -9,19 +15,19 @@ const CartSummary = () => {
         <div className="cart-summary">
           <div className="cart-summary-item">
             <p>Subtotal</p>
-            <p>₹ 2000</p>
+            <p>₹ {newSubTotal}</p>
           </div>
           <div className="cart-summary-item">
             <p>Shipping</p>
-            <p>₹ 100</p>
+            <p>₹ {shippingCharge}</p>
           </div>
           <div className="cart-summary-item">
             <p>Taxes</p>
-            <p>₹ 300</p>
+            <p>₹ {taxCharge}</p>
           </div>
           <div className="cart-summary-item">
             <p>Total</p>
-            <p>₹ 2400</p>
+            <p>₹ {total}</p>
           </div>
         </div>
         <div className="cta-cart-summary-container">
@@ -30,6 +36,12 @@ const CartSummary = () => {
       </div>
     </>
   );
+};
+
+CartSummary.propTypes = {
+  subTotal: PropTypes.number.isRequired,
+  shippingCharge: PropTypes.number.isRequired,
+  taxPercentage: PropTypes.number.isRequired,
 };
 
 export default CartSummary;
