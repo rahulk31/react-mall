@@ -27,7 +27,7 @@
   font-size: 2em; /* Adjust the font size as needed */
   font-weight: bold;
   position: relative;
-  overflow: hidden;
+  overflow: clip;
   border-radius: 8px;
   padding: 5px 15px;
 }

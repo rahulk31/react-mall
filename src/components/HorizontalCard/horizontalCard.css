@@ -39,7 +39,7 @@
 
 .item-title {
   max-width: 70%;
-  overflow: hidden;
+  overflow: clip;
   height: 24px;
   text-align: left;
 }
