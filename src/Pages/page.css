@@ -90,6 +90,8 @@ CART PAGE STYLES
   height: 100%;
 }
 
+.homepage-cta,
+.empty-wishlist,
 .empty-cart {
   display: flex;
   justify-content: center;
@@ -99,6 +101,8 @@ CART PAGE STYLES
   padding: 20px;
 }
 
+.homepage-cta button,
+.empty-wishlist button,
 .empty-cart button {
   width: 180px;
 }

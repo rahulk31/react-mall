@@ -44,7 +44,7 @@
   text-align: left;
 }
 
-.price-rating-container {
+.price-rating-hcontainer {
   display: flex;
   flex-direction: column;
   justify-content: center;

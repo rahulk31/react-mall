@@ -19,7 +19,7 @@ const HorizontalCard = ({ item, quantity }) => {
         </div>
         <div className="item-details-container">
           <h4 className="item-title">{item.title}</h4>
-          <div className="price-rating-container">
+          <div className="price-rating-hcontainer">
             <Rating rating={item.rating} />
             <p className="item-price">₹ {item.price}</p>
           </div>

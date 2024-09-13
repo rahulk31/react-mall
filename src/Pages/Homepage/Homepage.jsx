@@ -1,9 +1,14 @@
+import Button from "../../components/Button/Button";
 import "../page.css";
 
 const Homepage = () => {
   return (
     <div className="page">
-      <h1>Homepage</h1>
+      <h1 className="page-description">Your one-stop Shop for A-to-Z needs</h1>
+
+      <div className="homepage-cta">
+        <Button type="primary" text="Shop Now" link="/shop" />
+      </div>
     </div>
   );
 };

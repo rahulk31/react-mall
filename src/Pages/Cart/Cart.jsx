@@ -9,7 +9,7 @@ const Cart = () => {
   const itemsInCart = cart.items.length > 0;
 
   return (
-    <div className="cart-page">
+    <div className="page">
       <div className="page-description">ITEMS IN CART</div>
       {itemsInCart ? (
         <div className="cart-container">
@@ -34,7 +34,7 @@ const Cart = () => {
         </div>
       ) : (
         <div className="empty-cart">
-          <img src={cartVideo} alt="empty-cart" />
+          <video src={cartVideo} alt="empty-cart" autoPlay loop muted />
           <Button type="primary" text="Shop Now" link="/shop" />
         </div>
       )}

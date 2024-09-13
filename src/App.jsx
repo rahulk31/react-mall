@@ -6,6 +6,7 @@ import Shop from "./Pages/Shop/Shop";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import Cart from "./Pages/Cart/Cart";
+import Wishlist from "./Pages/Wishlist/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/wishlist",
-        // element: <MenstackContainer />,
+        element: <Wishlist />,
       },
       {
         path: "/cart",

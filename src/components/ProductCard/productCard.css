@@ -1,23 +1,39 @@
 .product-container {
   width: 250px;
-  height: 410px;
+  height: 400px;
   border-radius: 8px;
   overflow: clip;
   box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.01);
+  border: 1px solid #f0f0f0;
 }
 
 .product-image {
-  object-fit: contain;
   width: 250px;
   height: 250px;
   background-color: white;
   padding: 20px;
+  position: relative;
 }
 
 .product-image img {
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: contain;
+}
+
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.icon.wishlist-icon:hover {
+  border: 1px solid red;
+}
+
+.icon.wishlisted {
+  color: red;
 }
 
 .product-details-container {
@@ -51,5 +67,5 @@
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  padding: 0 10px;
+  padding: 10px;
 }
