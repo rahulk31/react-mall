@@ -10,8 +10,10 @@ const Shop = () => {
   const products = useSelector((state) => state.products);
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    if (products.items.length === 0) {
+      dispatch(fetchProducts());
+    }
+  }, [dispatch, products.items.length]);
 
   if (products.loading) {
     return (

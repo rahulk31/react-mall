@@ -1,14 +1,20 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import "./App.css";
-import Homepage from "./Pages/Homepage/Homepage";
-import MenstackContainer from "./container/MenstackContainer";
-import Shop from "./Pages/Shop/Shop";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import Cart from "./Pages/Cart/Cart";
-import Wishlist from "./Pages/Wishlist/Wishlist";
+import "./App.css";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
 
-const router = createBrowserRouter([
+// Lazy load components
+const Homepage = lazy(() => import("./Pages/Homepage/Homepage"));
+const MenstackContainer = lazy(() => import("./container/MenstackContainer"));
+const Shop = lazy(() => import("./Pages/Shop/Shop"));
+const Cart = lazy(() => import("./Pages/Cart/Cart"));
+const Wishlist = lazy(() => import("./Pages/Wishlist/Wishlist"));
+const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
+
+// Routes configuration
+const routes = [
   {
     path: "/",
     element: <MenstackContainer />,
@@ -19,28 +25,34 @@ const router = createBrowserRouter([
         element: <Homepage />,
       },
       {
-        path: "/shop",
+        path: "shop",
         element: <Shop />,
       },
       {
-        path: "/wishlist",
+        path: "product/:id",
+        element: <ProductPage />,
+      },
+      {
+        path: "wishlist",
         element: <Wishlist />,
       },
       {
-        path: "/cart",
+        path: "cart",
         element: <Cart />,
       },
     ],
   },
-]);
+];
+
+const router = createBrowserRouter(routes);
 
 function App() {
   return (
-    <>
-      <Provider store={store}>
+    <Provider store={store}>
+      <Suspense fallback={<LoadingSpinner />}>
         <RouterProvider router={router} />
-      </Provider>
-    </>
+      </Suspense>
+    </Provider>
   );
 }
 

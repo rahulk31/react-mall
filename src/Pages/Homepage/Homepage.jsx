@@ -4,10 +4,13 @@ import "../page.css";
 const Homepage = () => {
   return (
     <div className="page">
-      <h1 className="page-description">Your one-stop Shop for A-to-Z needs</h1>
-
-      <div className="homepage-cta">
-        <Button type="primary" text="Shop Now" link="/shop" />
+      <div className="hero-container">
+        <h1 className="page-description">
+          Your one-stop Shop for A-to-Z needs
+        </h1>
+        <div className="homepage-cta">
+          <Button type="primary" text="Shop Now" link="/shop" />
+        </div>
       </div>
     </div>
   );

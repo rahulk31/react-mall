@@ -2,10 +2,10 @@ import "./loadingSpinner.css";
 
 const LoadingSpinner = () => {
   return (
-    <div className="lds-ripple">
-      <div></div>
-      <div></div>
-    </div>
+    <span className="lds-ripple">
+      <span></span>
+      <span></span>
+    </span>
   );
 };
 
