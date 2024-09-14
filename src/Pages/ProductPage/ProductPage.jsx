@@ -46,7 +46,7 @@ const ProductPage = () => {
       dispatch(addItemToCart(product));
     }, 1000);
     navigate("/cart");
-  }, [dispatch, product]);
+  }, [dispatch, product, navigate]);
 
   if (!product) {
     return <div>Product not found!</div>;

@@ -1,21 +1,18 @@
+import { useMemo, useCallback } from "react";
 import PropTypes from "prop-types";
+import { FaSpinner } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { IoHeartOutline, IoHeart } from "react-icons/io5";
-import { FaSpinner } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useMemo, useCallback } from "react";
 import Rating from "../Rating/Rating";
-import {
-  addItemStatusToPending,
-  addItemToCart,
-} from "../../store/slices/cartSlice";
-import {
-  addToWishlist,
-  removeFromWishlist,
-  selectItemIsInWishlist,
-} from "../../store/slices/wishlistSlice";
 import Button from "../Button/Button";
+import { selectItemIsInWishlist } from "../../store/slices/wishlistSlice";
 import "./productCard.css";
+import {
+  addToCartHandler,
+  handleWishlistToggle,
+  buyNowHandler,
+} from "../../utils/cartUtils";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -28,12 +25,10 @@ const ProductCard = ({ product }) => {
     selectItemIsInWishlist(state, product.id)
   );
 
-  const addToCartHandler = useCallback(() => {
-    dispatch(addItemStatusToPending(product));
-    setTimeout(() => {
-      dispatch(addItemToCart(product));
-    }, 1000);
-  }, [dispatch, product]);
+  const memoizedAddToCartHandler = useCallback(
+    () => addToCartHandler(dispatch, product),
+    [dispatch, product]
+  );
 
   const getButtonText = useMemo(() => {
     if (productStatus === "pending") {
@@ -45,27 +40,13 @@ const ProductCard = ({ product }) => {
     return "Add to Cart";
   }, [productStatus]);
 
-  const handleWishlistToggle = useCallback(
-    (e) => {
-      e.stopPropagation();
-      if (isInWishlist) {
-        dispatch(removeFromWishlist(product));
-      } else {
-        dispatch(addToWishlist(product));
-      }
-    },
+  const memoizedHandleWishlistToggle = useCallback(
+    (e) => handleWishlistToggle(dispatch, isInWishlist, product, e),
     [dispatch, isInWishlist, product]
   );
 
-  const buyNowHandler = useCallback(
-    (e) => {
-      e.stopPropagation();
-      dispatch(addItemStatusToPending(product));
-      setTimeout(() => {
-        dispatch(addItemToCart(product));
-      }, 1000);
-      navigate("/cart");
-    },
+  const memoizedBuyNowHandler = useCallback(
+    (e) => buyNowHandler(dispatch, product, navigate, e),
     [dispatch, product, navigate]
   );
 
@@ -80,12 +61,12 @@ const ProductCard = ({ product }) => {
         {isInWishlist ? (
           <IoHeart
             className="icon wishlist-icon wishlisted"
-            onClick={handleWishlistToggle}
+            onClick={memoizedHandleWishlistToggle}
           />
         ) : (
           <IoHeartOutline
             className="icon wishlist-icon"
-            onClick={handleWishlistToggle}
+            onClick={memoizedHandleWishlistToggle}
           />
         )}
       </div>
@@ -102,7 +83,7 @@ const ProductCard = ({ product }) => {
           text={getButtonText}
           onClick={(e) => {
             e.stopPropagation();
-            addToCartHandler();
+            memoizedAddToCartHandler();
           }}
           className="cta-button"
           isDisabled={productStatus === "added"}
@@ -111,7 +92,7 @@ const ProductCard = ({ product }) => {
           type="primary"
           text="Buy Now"
           className="cta-button"
-          onClick={(e) => buyNowHandler(e)}
+          onClick={memoizedBuyNowHandler}
         />
       </div>
     </div>

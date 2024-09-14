@@ -18,6 +18,10 @@
   padding: 20px;
 }
 
+.card-container:hover {
+  cursor: pointer;
+}
+
 .item-image-container {
   width: 100px;
   height: 100px;

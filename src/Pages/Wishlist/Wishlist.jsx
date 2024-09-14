@@ -1,11 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import cartVideo from "../../assets/cart.webm";
 import Button from "../../components/Button/Button";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import "../page.css";
 
 const Wishlist = () => {
-  const dispatch = useDispatch();
   const items = useSelector((state) => state.wishlist.items);
   const showWithoutItems = items.length === 0;
   return (

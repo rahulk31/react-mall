@@ -8,12 +8,19 @@ import {
   deleteItemFromCart,
   removeItemFromCart,
 } from "../../store/slices/cartSlice";
+import { useNavigate } from "react-router-dom";
 
 const HorizontalCard = ({ item, quantity }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const navigateToProduct = (e) => {
+    e.stopPropagation();
+    navigate(`/product/${item.id}`);
+  };
   return (
     <div className="horizontal-card-container">
-      <div className="card-container">
+      <div className="card-container" onClick={(e) => navigateToProduct(e)}>
         <div className="item-image-container">
           <img src={item.image} alt="" />
         </div>
