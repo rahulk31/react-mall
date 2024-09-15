@@ -31,7 +31,6 @@ const ProductsList = () => {
     <ProductCard key={product.id} product={product} />
   ));
 
-  console.log("render products = ", renderProducts);
   return (
     <div>
       <div className="products-container">{renderProducts}</div>

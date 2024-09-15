@@ -12,3 +12,9 @@
   outline: 1px solid #646cff;
   /* outline: 1px solid #fff; */
 }
+
+@media screen and (max-width: 768px) {
+  .btn {
+    padding: 8px;
+  }
+}

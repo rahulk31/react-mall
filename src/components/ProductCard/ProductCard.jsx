@@ -61,8 +61,8 @@ const ProductCard = ({ product }) => {
       return (
         <div className="cta-container">
           <Button
-            type="primary"
-            text="Check "
+            type="secondary"
+            text="Check details"
             onClick={() => navigate(`/product/${product.id}`)}
           />
         </div>

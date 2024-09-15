@@ -9,6 +9,7 @@ import {
   addItemToCart,
 } from "../../store/slices/cartSlice";
 import { FaSpinner } from "react-icons/fa";
+import { addToCartHandler } from "../../utils/cartUtils";
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -32,12 +33,8 @@ const ProductPage = () => {
     return "Add to Cart";
   }, [productStatus]);
 
-  const addToCartHandler = useCallback(() => {
-    dispatch(addItemStatusToPending(product));
-
-    setTimeout(() => {
-      dispatch(addItemToCart(product));
-    }, 1000);
+  const addItemToCartHandler = useCallback(() => {
+    addToCartHandler(dispatch, product);
   }, [dispatch, product]);
 
   const buyNowHandler = useCallback(() => {
@@ -69,7 +66,7 @@ const ProductPage = () => {
             type="secondary"
             text={getButtonText}
             onClick={() => {
-              addToCartHandler();
+              addItemToCartHandler();
             }}
             className="cta-button"
             isDisabled={productStatus === "added"}

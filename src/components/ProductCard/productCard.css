@@ -96,7 +96,7 @@
 @media screen and (max-width: 768px) {
   .product-container {
     width: 150px;
-    height: 300px;
+    height: 320px;
   }
 
   .product-image {
@@ -107,5 +107,10 @@
   .cta-container {
     grid-template-columns: 1fr;
     width: 100%;
+  }
+
+  .price-rating-container {
+    flex-direction: column;
+    gap: 5px;
   }
 }

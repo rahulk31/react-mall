@@ -12,16 +12,6 @@
   background-size: contain;
 }
 
-.products-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 30px;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin: 20px;
-}
-
 .page-description {
   text-align: center;
   text-transform: uppercase;
