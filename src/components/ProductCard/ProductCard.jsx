@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 import Rating from "../Rating/Rating";
 import Button from "../Button/Button";
 import { selectItemIsInWishlist } from "../../store/slices/wishlistSlice";
-import "./productCard.css";
 import {
   addToCartHandler,
   handleWishlistToggle,
   buyNowHandler,
 } from "../../utils/cartUtils";
+import "./productCard.css";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -25,10 +25,9 @@ const ProductCard = ({ product }) => {
     selectItemIsInWishlist(state, product.id)
   );
 
-  const memoizedAddToCartHandler = useCallback(
-    () => addToCartHandler(dispatch, product),
-    [dispatch, product]
-  );
+  const memoizedAddToCartHandler = useCallback(() => {
+    addToCartHandler(dispatch, product);
+  }, [dispatch, product]);
 
   const getButtonText = useMemo(() => {
     if (productStatus === "pending") {
@@ -61,12 +60,16 @@ const ProductCard = ({ product }) => {
         {isInWishlist ? (
           <IoHeart
             className="icon wishlist-icon wishlisted"
-            onClick={memoizedHandleWishlistToggle}
+            onClick={(e) =>
+              handleWishlistToggle(dispatch, isInWishlist, product, e)
+            }
           />
         ) : (
           <IoHeartOutline
             className="icon wishlist-icon"
-            onClick={memoizedHandleWishlistToggle}
+            onClick={(e) =>
+              handleWishlistToggle(dispatch, isInWishlist, product, e)
+            }
           />
         )}
       </div>

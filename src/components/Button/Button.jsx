@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Button = ({ type, text, onClick, link, isDisabled }) => {
   const buttonContent = (
     <button
-      className={`btn ${btnVariants[type]}`}
+      className={`${btnVariants[type]}`}
       onClick={onClick}
       disabled={isDisabled}
     >

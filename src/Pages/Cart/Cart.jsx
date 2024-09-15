@@ -19,6 +19,7 @@ const Cart = () => {
                 key={item.item.id}
                 item={item.item}
                 quantity={item.quantity}
+                disableDecrement={item.disableDecrement}
               />
             ))}
           </div>

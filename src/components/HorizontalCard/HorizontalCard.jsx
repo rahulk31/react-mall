@@ -3,14 +3,14 @@ import { IoRemoveOutline, IoAddOutline, IoTrashOutline } from "react-icons/io5";
 import "./horizontalCard.css";
 import Rating from "../Rating/Rating";
 import { useDispatch } from "react-redux";
-import {
-  addItemToCart,
-  deleteItemFromCart,
-  removeItemFromCart,
-} from "../../store/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
+import {
+  decreaseQuantityHandler,
+  deleteFromCartHandler,
+  increaseQuantityHandler,
+} from "../../utils/cartUtils";
 
-const HorizontalCard = ({ item, quantity }) => {
+const HorizontalCard = ({ item, quantity, disableDecrement }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -36,17 +36,19 @@ const HorizontalCard = ({ item, quantity }) => {
         <div className="quantity-container">
           <IoRemoveOutline
             className="icon"
-            onClick={() => dispatch(removeItemFromCart(item))}
+            onClick={() =>
+              decreaseQuantityHandler(dispatch, item, disableDecrement)
+            }
           />
           <p className="quantity">{quantity}</p>
           <IoAddOutline
             className="icon"
-            onClick={() => dispatch(addItemToCart(item))}
+            onClick={() => increaseQuantityHandler(dispatch, item)}
           />
         </div>
         <IoTrashOutline
           className="icon delete-icon"
-          onClick={() => dispatch(deleteItemFromCart(item))}
+          onClick={() => deleteFromCartHandler(dispatch, item)}
         />
       </div>
     </div>
@@ -56,6 +58,7 @@ const HorizontalCard = ({ item, quantity }) => {
 HorizontalCard.propTypes = {
   item: PropTypes.object.isRequired,
   quantity: PropTypes.number.isRequired,
+  disableDecrement: PropTypes.bool.isRequired,
 };
 
 export default HorizontalCard;

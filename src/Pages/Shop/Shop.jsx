@@ -1,42 +1,13 @@
-import { useDispatch, useSelector } from "react-redux";
+import ProductFilters from "../../sections/ProductFilters/ProductFilters";
+import ProductsList from "../../sections/ProductsList/ProductsList";
 import "../page.css";
-import { useEffect } from "react";
-import { fetchProducts } from "../../store/slices/productsSlice";
-import ProductCard from "../../components/ProductCard/ProductCard";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Shop = () => {
-  const dispatch = useDispatch();
-  const products = useSelector((state) => state.products);
-
-  useEffect(() => {
-    if (products.items.length === 0) {
-      dispatch(fetchProducts());
-    }
-  }, [dispatch, products.items.length]);
-
-  if (products.loading) {
-    return (
-      <div className="page">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
-  if (products.errors) {
-    return <div className="page">{products.errors}</div>;
-  }
-
-  const renderProducts = products.items.map((product) => (
-    <ProductCard key={product.id} product={product} />
-  ));
-
-  console.log("render products = ", renderProducts);
-
   return (
     <div className="page">
       <h1 className="page-description">Shop from a diverse Product range</h1>
-      <div className="products-container">{renderProducts}</div>
+      {/* <ProductFilters /> */}
+      <ProductsList />
     </div>
   );
 };
