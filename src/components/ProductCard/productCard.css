@@ -92,3 +92,20 @@
     transform: rotate(360deg);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .product-container {
+    width: 150px;
+    height: 300px;
+  }
+
+  .product-image {
+    width: 150px;
+    height: 150px;
+  }
+
+  .cta-container {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}

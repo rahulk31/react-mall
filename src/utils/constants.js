@@ -9,3 +9,5 @@ export const toastVariants = {
   fail: "toast-fail",
   warning: "toast-warning",
 };
+
+export const MOBILE_BREAKPOINT = 768;

@@ -13,10 +13,13 @@ import {
   buyNowHandler,
 } from "../../utils/cartUtils";
 import "./productCard.css";
+import useIsMobile from "../../utils/isMobile";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useIsMobile();
+  // console.log(isMobile);
 
   const productPrice = useMemo(() => Math.ceil(product.price), [product.price]);
 
@@ -53,6 +56,41 @@ const ProductCard = ({ product }) => {
     navigate(`/product/${product.id}`);
   }, [navigate, product.id]);
 
+  const renderCTABtns = () => {
+    if (isMobile) {
+      return (
+        <div className="cta-container">
+          <Button
+            type="primary"
+            text="Check "
+            onClick={() => navigate(`/product/${product.id}`)}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="cta-container">
+          <Button
+            type="secondary"
+            text={getButtonText}
+            onClick={(e) => {
+              e.stopPropagation();
+              memoizedAddToCartHandler();
+            }}
+            className="cta-button"
+            isDisabled={productStatus === "added"}
+          />
+          <Button
+            type="primary"
+            text="Buy Now"
+            className="cta-button"
+            onClick={memoizedBuyNowHandler}
+          />
+        </div>
+      );
+    }
+  };
+
   return (
     <div className="product-container">
       <div className="product-image" onClick={openProductPage}>
@@ -60,16 +98,12 @@ const ProductCard = ({ product }) => {
         {isInWishlist ? (
           <IoHeart
             className="icon wishlist-icon wishlisted"
-            onClick={(e) =>
-              handleWishlistToggle(dispatch, isInWishlist, product, e)
-            }
+            onClick={(e) => memoizedHandleWishlistToggle(e)}
           />
         ) : (
           <IoHeartOutline
             className="icon wishlist-icon"
-            onClick={(e) =>
-              handleWishlistToggle(dispatch, isInWishlist, product, e)
-            }
+            onClick={(e) => memoizedHandleWishlistToggle(e)}
           />
         )}
       </div>
@@ -80,24 +114,7 @@ const ProductCard = ({ product }) => {
           <Rating rating={product.rating} />
         </div>
       </div>
-      <div className="cta-container">
-        <Button
-          type="secondary"
-          text={getButtonText}
-          onClick={(e) => {
-            e.stopPropagation();
-            memoizedAddToCartHandler();
-          }}
-          className="cta-button"
-          isDisabled={productStatus === "added"}
-        />
-        <Button
-          type="primary"
-          text="Buy Now"
-          className="cta-button"
-          onClick={memoizedBuyNowHandler}
-        />
-      </div>
+      {renderCTABtns()}
     </div>
   );
 };
