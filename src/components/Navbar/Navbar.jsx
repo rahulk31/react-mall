@@ -52,6 +52,7 @@ const Navbar = () => {
       clearToastAfterDelay(dispatch);
     } else {
       navigate("/login");
+      setShowLogoutModal(false);
     }
   };
 
@@ -128,6 +129,7 @@ const Navbar = () => {
           <IoMenuOutline className="hamburger" onClick={toggleMenu} />
         )}
         {isMenuOpen && navIconComponents}
+        {showLogoutModal && renderLogoutModal()}
       </nav>
     );
   }

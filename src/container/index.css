@@ -2,3 +2,13 @@
   min-height: calc(100vh - 228px);
   position: relative;
 }
+
+@media screen and (max-width: 768px) {
+  .page {
+    min-height: calc(100vh - 128px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}
