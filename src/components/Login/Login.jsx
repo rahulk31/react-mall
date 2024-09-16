@@ -35,7 +35,7 @@ const Login = () => {
     (e) => {
       e.preventDefault();
       console.log("Logging in");
-      const data = fetch("https://fakestoreapi.com/auth/login", {
+      fetch("https://fakestoreapi.com/auth/login", {
         method: "POST",
         body: JSON.stringify({
           username: username,
@@ -95,7 +95,7 @@ const Login = () => {
             placeholder="Password"
             onChange={(e) => onChangeHandler(e, "password")}
             value={password}
-            required
+            required={true}
           />
           {failedLogin && (
             <p className="error">

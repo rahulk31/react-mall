@@ -16,10 +16,12 @@ import { useState } from "react";
 import { logout } from "../../store/slices/authSlice";
 import { setToast } from "../../store/slices/toastSlice";
 import { clearToastAfterDelay } from "../../utils/cartUtils";
+import Button from "../Button/Button";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const cartCount = useSelector((state) => state.cart.items.length);
   const displayCartCount = !isLoggedIn ? 0 : cartCount > 9 ? "9+" : cartCount;
 
@@ -32,6 +34,7 @@ const Navbar = () => {
 
   const isMobile = useIsMobile();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
@@ -40,11 +43,38 @@ const Navbar = () => {
   const logoutHandler = () => {
     if (isLoggedIn) {
       dispatch(logout());
+      setShowLogoutModal(false);
+      navigate("/logout");
+
       dispatch(
         setToast({ status: "success", message: "Logged out successfully" })
       );
       clearToastAfterDelay(dispatch);
+    } else {
+      navigate("/login");
     }
+  };
+
+  const renderLogoutModal = () => {
+    return (
+      <div className="logout-modal-container">
+        <div className="logout-modal">
+          <h3>Are you sure you want to logout?</h3>
+          <div className="cta-container">
+            <Button
+              btnVariant="primary"
+              onClick={logoutHandler}
+              text="Yes, Logout"
+            />
+            <Button
+              btnVariant="secondary"
+              onClick={() => setShowLogoutModal(false)}
+              text="No, Cancel"
+            />
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const navIconComponents = (
@@ -75,19 +105,17 @@ const Navbar = () => {
           <span className="icon-count">{displayCartCount}</span>
         </li>
       </NavLink>
-      <NavLink
-        to={isLoggedIn ? "/logout" : "/login"}
-        className={({ isActive }) => (isActive ? "buttonClick" : "")}
-        onClick={logoutHandler}
+      <li
+        onClick={() =>
+          isLoggedIn ? setShowLogoutModal(true) : navigate("/login")
+        }
       >
-        <li>
-          {isLoggedIn ? (
-            <IoLogOutOutline className="icon" />
-          ) : (
-            <IoPersonOutline className="icon" />
-          )}
-        </li>
-      </NavLink>
+        {isLoggedIn ? (
+          <IoLogOutOutline className="icon" />
+        ) : (
+          <IoPersonOutline className="icon" />
+        )}
+      </li>
     </ul>
   );
 
@@ -113,6 +141,7 @@ const Navbar = () => {
         </Link>
       </div>
       {navIconComponents}
+      {showLogoutModal && renderLogoutModal()}
     </nav>
   );
 };
