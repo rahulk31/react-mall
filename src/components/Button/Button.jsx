@@ -3,12 +3,13 @@ import { btnVariants } from "../../utils/constants";
 import "./button.css";
 import { Link } from "react-router-dom";
 
-const Button = ({ type, text, onClick, link, isDisabled }) => {
+const Button = ({ btnVariant, text, onClick, link, isDisabled, type }) => {
   const buttonContent = (
     <button
-      className={`${btnVariants[type]}`}
+      className={`${btnVariants[btnVariant]}`}
       onClick={onClick}
       disabled={isDisabled}
+      type={type ? type : "button"}
     >
       {text}
     </button>
@@ -22,11 +23,12 @@ const Button = ({ type, text, onClick, link, isDisabled }) => {
 };
 
 Button.propTypes = {
-  type: PropTypes.string.isRequired,
+  btnVariant: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func,
   link: PropTypes.string,
   isDisabled: PropTypes.bool,
+  type: PropTypes.string,
 };
 
 export default Button;

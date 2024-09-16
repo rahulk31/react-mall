@@ -2,8 +2,8 @@ import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import "./App.css";
 import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import "./App.css";
 
 // Lazy load components
 const Homepage = lazy(() => import("./Pages/Homepage/Homepage"));
@@ -12,6 +12,7 @@ const Shop = lazy(() => import("./Pages/Shop/Shop"));
 const Cart = lazy(() => import("./Pages/Cart/Cart"));
 const Wishlist = lazy(() => import("./Pages/Wishlist/Wishlist"));
 const ProductPage = lazy(() => import("./Pages/ProductPage/ProductPage"));
+const AuthPage = lazy(() => import("./Pages/Auth/Auth"));
 
 // Routes configuration
 const routes = [
@@ -39,6 +40,14 @@ const routes = [
       {
         path: "cart",
         element: <Cart />,
+      },
+      {
+        path: "/login",
+        element: <AuthPage />,
+      },
+      {
+        path: "/logout",
+        element: <Shop />,
       },
     ],
   },

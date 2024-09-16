@@ -7,6 +7,13 @@
   /* background: linear-gradient(to bottom, #111111, #242424); */
 }
 
+.navbar .logo {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
 .navbar ul {
   list-style-type: none;
   display: flex;
@@ -18,4 +25,77 @@
 
 .buttonClick {
   color: #000000;
+}
+
+.navbar ul li {
+  position: relative;
+}
+
+.icon {
+  width: 30px;
+  /* aspect-ratio: 1/1; */
+  height: 30px;
+  color: #242424;
+  padding: 5px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+}
+
+.icon-count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 15px;
+  height: 15px;
+  background: #242424;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 7px;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-navbar {
+  z-index: 5;
+  position: absolute;
+  top: 20;
+  left: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.hamburger {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.hamburger.open {
+  border: none;
+}
+
+.mobile-navbar ul {
+  list-style-type: none;
+  display: flex;
+  gap: 15px;
+  padding: 0;
+}
+
+.mobile-navbar ul li {
+  position: relative;
+}
+
+.mobile-navbar ul {
+  margin-right: 10px;
 }

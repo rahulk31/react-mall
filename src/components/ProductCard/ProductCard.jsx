@@ -13,7 +13,7 @@ import {
   buyNowHandler,
 } from "../../utils/cartUtils";
 import "./productCard.css";
-import useIsMobile from "../../utils/isMobile";
+import { useIsMobile } from "../../hooks/isMobile";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
@@ -27,10 +27,15 @@ const ProductCard = ({ product }) => {
   const isInWishlist = useSelector((state) =>
     selectItemIsInWishlist(state, product.id)
   );
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const memoizedAddToCartHandler = useCallback(() => {
+    if (isLoggedIn === false) {
+      navigate("/login");
+      return;
+    }
     addToCartHandler(dispatch, product);
-  }, [dispatch, product]);
+  }, [dispatch, product, navigate, isLoggedIn]);
 
   const getButtonText = useMemo(() => {
     if (productStatus === "pending") {
@@ -43,13 +48,26 @@ const ProductCard = ({ product }) => {
   }, [productStatus]);
 
   const memoizedHandleWishlistToggle = useCallback(
-    (e) => handleWishlistToggle(dispatch, isInWishlist, product, e),
-    [dispatch, isInWishlist, product]
+    (e) => {
+      e.stopPropagation();
+      if (isLoggedIn === false) {
+        navigate("/login");
+        return;
+      }
+      handleWishlistToggle(dispatch, isInWishlist, product, e);
+    },
+    [dispatch, isInWishlist, product, isLoggedIn, navigate]
   );
 
   const memoizedBuyNowHandler = useCallback(
-    (e) => buyNowHandler(dispatch, product, navigate, e),
-    [dispatch, product, navigate]
+    (e) => {
+      if (isLoggedIn === false) {
+        navigate("/login");
+        return;
+      }
+      buyNowHandler(dispatch, product, navigate, e);
+    },
+    [dispatch, product, navigate, isLoggedIn]
   );
 
   const openProductPage = useCallback(() => {
@@ -61,7 +79,7 @@ const ProductCard = ({ product }) => {
       return (
         <div className="cta-container">
           <Button
-            type="secondary"
+            btnVariant="secondary"
             text="Check details"
             onClick={() => navigate(`/product/${product.id}`)}
           />
@@ -71,7 +89,7 @@ const ProductCard = ({ product }) => {
       return (
         <div className="cta-container">
           <Button
-            type="secondary"
+            btnVariant="secondary"
             text={getButtonText}
             onClick={(e) => {
               e.stopPropagation();
@@ -81,7 +99,7 @@ const ProductCard = ({ product }) => {
             isDisabled={productStatus === "added"}
           />
           <Button
-            type="primary"
+            btnVariant="primary"
             text="Buy Now"
             className="cta-button"
             onClick={memoizedBuyNowHandler}

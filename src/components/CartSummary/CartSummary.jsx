@@ -31,7 +31,7 @@ const CartSummary = ({ subTotal, shippingCharge, taxPercentage }) => {
           </div>
         </div>
         <div className="cta-cart-summary-container">
-          <Button type="primary" text="Proceed to Checkout" />
+          <Button btnVariant="primary" text="Proceed to Checkout" />
         </div>
       </div>
     </>

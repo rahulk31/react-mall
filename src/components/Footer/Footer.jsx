@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <nav className="footer">
       <div className="logo">
-        <h3>MALL</h3>
+        <h3>XoXo</h3>
       </div>
       <ul>
         <a href="/">
@@ -12,9 +12,6 @@ const Footer = () => {
         </a>
         <a href="/">
           <li>Refunds</li>
-        </a>
-        <a href="/">
-          <li>Terms & Conditions</li>
         </a>
       </ul>
     </nav>

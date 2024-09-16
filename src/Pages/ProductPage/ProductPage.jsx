@@ -19,6 +19,8 @@ const ProductPage = () => {
     state.products.items.find((item) => item.id === Number(id))
   );
 
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
   console.log("product page = ", product);
 
   const productStatus = useSelector((state) => state.cart.status[product.id]);
@@ -38,12 +40,16 @@ const ProductPage = () => {
   }, [dispatch, product]);
 
   const buyNowHandler = useCallback(() => {
+    if (isLoggedIn === false) {
+      navigate("/login");
+      return;
+    }
     dispatch(addItemStatusToPending(product));
     setTimeout(() => {
       dispatch(addItemToCart(product));
     }, 1000);
     navigate("/cart");
-  }, [dispatch, product, navigate]);
+  }, [dispatch, product, navigate, isLoggedIn]);
 
   if (!product) {
     return <div>Product not found!</div>;
@@ -63,7 +69,7 @@ const ProductPage = () => {
         </div>
         <div className="cta-container">
           <Button
-            type="secondary"
+            btnVariant="secondary"
             text={getButtonText}
             onClick={() => {
               addItemToCartHandler();
@@ -72,7 +78,7 @@ const ProductPage = () => {
             isDisabled={productStatus === "added"}
           />
           <Button
-            type="primary"
+            btnVariant="primary"
             text="Buy Now"
             className="cta-button"
             onClick={buyNowHandler}

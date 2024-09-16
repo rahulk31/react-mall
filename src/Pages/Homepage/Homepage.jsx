@@ -9,7 +9,7 @@ const Homepage = () => {
           Your one-stop Shop for A-to-Z needs
         </h1>
         <div className="homepage-cta">
-          <Button type="primary" text="Shop Now" link="/shop" />
+          <Button btnVariant="primary" text="Shop Now" link="/shop" />
         </div>
       </div>
     </div>

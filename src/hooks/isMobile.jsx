@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { MOBILE_BREAKPOINT } from "./constants";
+import { MOBILE_BREAKPOINT } from "../utils/constants";
 
-const useIsMobile = () => {
+export const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(
     window.innerWidth < MOBILE_BREAKPOINT
   );
@@ -18,5 +18,3 @@ const useIsMobile = () => {
 
   return isMobile;
 };
-
-export default useIsMobile;

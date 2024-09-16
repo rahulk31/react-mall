@@ -32,6 +32,8 @@
   cursor: pointer;
   width: 25px;
   height: 25px;
+  border-radius: 50%;
+  z-index: 1;
 }
 
 .icon.wishlist-icon:hover {
